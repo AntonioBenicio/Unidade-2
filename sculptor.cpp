@@ -39,7 +39,7 @@ Sculptor::Sculptor(int _nx, int _ny, int _nz) {
         this->v[i][j][k].g = this->g;
         this->v[i][j][k].b = this->b;
         this->v[i][j][k].a = this->a;
-        this->v[i][j][k].isOn = false;
+        this->v[i][j][k].show = false;
         // iniciliazao de cada voxel para cada membro da struct
       }
     }
@@ -86,7 +86,7 @@ void Sculptor::putVoxel(int x, int y, int z) {
 // implementação do membro de desativação do voxel
 void Sculptor::cutVoxel(int x, int y, int z) {
   if ((this->nx > x) && (this->ny > y) && (this->nz > z)) {
-    this->v[x][y][z].isOn = false;
+    this->v[x][y][z].show = false;
     // desativa o voxel se a posição for valida
   }
 }
@@ -104,7 +104,7 @@ void Sculptor::putBox(int x0, int x1, int y0, int y1, int z0, int z1) {
     for (i = x0; i < x1; i++) {
       for (j = y0; j < y1; j++) {
         for (k = 0; k < z1; k++) {
-          this->v[i][j][k].isOn = true;
+          this->v[i][j][k].show = true;
           this->v[i][j][k].r = this->r;
           this->v[i][j][k].g = this->g;
           this->v[i][j][k].b = this->b;
@@ -129,7 +129,7 @@ void Sculptor::cutBox(int x0, int x1, int y0, int y1, int z0, int z1) {
     for (i = x0; i < x1; i++) {
       for (j = y0; j < y1; j++) {
         for (k = z0; k < z1; k++) {
-          this->v[i][j][k].isOn = false;
+          this->v[i][j][k].show = false;
           // desativa um bloco de voxes se as posições forem válidos
         }
       }
@@ -148,7 +148,7 @@ void Sculptor::putSphere(int xcenter, int ycenter, int zcenter, int r) {
         if ((pow(i - xcenter, 2)) + (pow(j - ycenter, 2)) +
                 (pow(k - zcenter, 2)) <=
             (pow(r, 2))) {
-          this->v[i][j][k].isOn = true;
+          this->v[i][j][k].show = true;
           this->v[i][j][k].r = this -> r;
           this->v[i][j][k].g = this -> g;
           this->v[i][j][k].b = this -> b;
@@ -171,7 +171,7 @@ void Sculptor::cutSphere(int xcenter, int ycenter, int zcenter, int r) {
         if ((pow(i - xcenter, 2)) + (pow(j - ycenter, 2)) +
                 (pow(k - zcenter, 2)) <=
             (pow(r, 2))) {
-          this->v[i][j][k].isOn = false;
+          this->v[i][j][k].show = false;
         }
       }
     }
@@ -193,7 +193,7 @@ void Sculptor::putEllipsoid(int xcenter, int ycenter, int zcenter, int rx,
                 (pow(k - zcenter, 2) / pow(rz, 2)) <=
             1) {
 
-          this->v[i][j][k].isOn = true;
+          this->v[i][j][k].show = true;
 
           this->v[i][j][k].r = this->r;
           this->v[i][j][k].g = this->g;
@@ -220,7 +220,7 @@ void Sculptor::cutEllipsoid(int xcenter, int ycenter, int zcenter, int rx,
                 (pow(k - zcenter, 2) / pow(rz, 2)) <=
             1) {
 
-          this->v[i][j][k].isOn = false;
+          this->v[i][j][k].show = false;
           // desativa um bloco de voxels e atribui a eles a cor atual
         }
       }
@@ -248,7 +248,7 @@ void Sculptor::writeOFF(char *filename) {
   for (i = 0; i < nx; i++) {
     for (j = 0; j < ny; j++) {
       for (k = 0; k < nz; k++) {
-        if (v[i][j][k].isOn == true) {
+        if (v[i][j][k].show == true) {
           n_voxels = n_voxels + 1; // guarda o numero de voxels ativos
         }
       }
@@ -261,7 +261,7 @@ void Sculptor::writeOFF(char *filename) {
   for (i = 0; i < nx; i++) {
     for (j = 0; j < ny; j++) {
       for (k = 0; k < nz; k++) {
-        if (v[i][j][k].isOn == true) {
+        if (v[i][j][k].show == true) {
 
           fout << i + 0.5 << " " << j + 0.5 << " " << k + 0.5 << std::endl; // P0
           fout << i + 0.5 << " " << j - 0.5 << " " << k + 0.5 << std::endl; // P1
@@ -284,7 +284,7 @@ void Sculptor::writeOFF(char *filename) {
   for (i = 0; i < nx; i++) {
     for (j = 0; j < ny; j++) {
       for (k = 0; k < nz; k++) {
-        if (v[i][j][k].isOn == true) {
+        if (v[i][j][k].show == true) {
           n_vertices = n_voxels * 8;
 
           fout << "4"

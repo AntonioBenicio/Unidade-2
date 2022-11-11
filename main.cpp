@@ -5,38 +5,29 @@
 
 int main(void) {
 
-// Exemplo 
-
   Sculptor exemplo(30, 30, 30);
 
-  exemplo.setColor(0.255, 0.255, 0, 0.9); 
+  exemplo.setColor(0.755, 0.755, 0, 0.9); 
   exemplo.putSphere(10, 10, 10, 10);
  
   exemplo.cutSphere(9, 9, 9, 9);
     
   exemplo.setColor(0.6, 0.4, 0, 11);
-  exemplo.putBox(28, 30, 28, 30, 28, 30);
+  exemplo.putBox(0, 2, 28, 30, 0, 4);
 
 
   exemplo.setColor(1, 0, 0, 0.9);
-  exemplo.putEllipsoid(0, 27, 28, 30, 1, 27);
+  exemplo.putEllipsoid(0, 27, 28, 30, 25, 29);
 
   exemplo.cutEllipsoid(0, 8, 28, 30, 0, 8);
 
-  
-  std::cout << "O ARQUIVO exemplo.off FOI CRIADO!" << std::endl;
-  
-  exemplo.writeOFF((char *) "exemplo.off"); //geracao do arquivo
-
-
-  //----------------------------FIM DO EXEMPLO---------------------------//
+  exemplo.writeOFF((char *) "exemplo.off"); 
 
   std::cout << "\n";
-
-  //---------------------------ESCULTOR PRINCIPAL-----------------------//
+ 
   Sculptor mine(30, 30, 30);
 
-  //caixa
+  
 
   mine.setColor(0.6, 0.4, 0, 0.9);
   mine.putBox(0, 30, 0, 25, 0, 30);
@@ -76,7 +67,7 @@ mine.setColor(0, 1, 0, 0.9);
 
   //bloco marrom destacado
 mine.setColor(0.6, 0.4, 0, 0.9);
-  mine.putBox( 3,3,26,27 , 0, 0);
+  mine.putBox( 2,6,26,27 , 0, 0);
   // bloco marrom
  mine.setColor(0.6, 0.4, 0, 0.9);
   mine.putBox( 5,7,26,27 , 0, 0);
@@ -152,64 +143,14 @@ mine.setColor(0.6, 0.4, 0, 0.9);
   // bloco marrom
 
   
-    //blocos verdes destacados 3
-  mine.setColor(0, 1, 0, 0.9);
-  mine.putBox(0, 0, 26,27 , 0,2 );
-  // bloco verde
-mine.setColor(0, 1, 0, 0.9);
-  mine.putBox(0, 0, 26,27 ,4, 4);
-  // bloco verde
-mine.setColor(0, 1, 0, 0.9);
-  mine.putBox(0,0, 26,27 , 8, 9);
-  // bloco verde
-mine.setColor(0, 1, 0, 0.9);
-  mine.putBox(0,0 , 26,27 , 11,12);
-  // bloco verde
-mine.setColor(0, 1, 0, 0.9);
-  mine.putBox(0,0, 26,27 , 13,15);
-  // bloco verde
-mine.setColor(0, 1, 0, 0.9);
-  mine.putBox(0, 0, 26,27 , 17,11);
-  // bloco verde
-mine.setColor(0, 1, 0, 0.9);
-  mine.putBox(0,0, 26,27 , 30,30);
-  // bloco verde
-mine.setColor(0, 1, 0, 0.9);
-  mine.putBox(0,0,26,27 , 30,30);
-  // bloco verde
-mine.setColor(0, 1, 0, 0.9);
-  mine.putBox( 0,0,26,27 , 30,30);
-  // bloco verde
 
-  //bloco marrom destacado
+    mine.setColor(0.6, 0.4, 0, 0.9);
+  mine.putBox(30, 30, 0, 25, 0, 30);
+// bloco marrom
 mine.setColor(0.6, 0.4, 0, 0.9);
-  mine.putBox( 0,0,26,27 , 30,30);
-  // bloco marrom
-mine.setColor(0.6, 0.4, 0, 0.9);
-  mine.putBox( 0,0,26,27 , 30,30);
-  // bloco marrom
-mine.setColor(0.6, 0.4, 0, 0.9);
-  mine.putBox( 0,0,26,27 , 30, 30);
-  // bloco marrom
-mine.setColor(0.6, 0.4, 0, 0.9);
-  mine.putBox( 0,0,26,27 , 30, 30);
-  // bloco marrom
-mine.setColor(0.6, 0.4, 0, 0.9);
-  mine.putBox( 0,0,26,27 , 30, 30);
-  // bloco marrom
-mine.setColor(0.6, 0.4, 0, 0.9);
-  mine.putBox( 0,0,26,27 , 30, 30);
-  // bloco marrom
-mine.setColor(0.6, 0.4, 0, 0.9);
-  mine.putBox( 0,0,26,27 , 16, 18);
-  // bloco marrom
-
-
+  mine.putBox(0, 0, 0, 25, 0, 30);
+// bloco marrom
   
-  std::cout << "O ARQUIVO mine.off FOI CRIADO!" << std::endl;
-
-  mine.writeOFF((char *) "mine.off");
-
-  //----------------------FIM DO ESCULTOR PRINCIPAL----------------//
+  mine.writeOFF( "mine.off");
   
 }
